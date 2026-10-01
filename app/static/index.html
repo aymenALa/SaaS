@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Privacy-first image protection with transparent processing metrics." />
+  <title>Veil — Privacy media lab</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Veil home"><span class="brand-mark">✦</span><span>veil</span></a>
+      <div class="topbar-note"><span class="status-dot"></span> Local-first processing</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span></span> Private media workspace</div>
+        <h1>Protect the pixels<br /><em>that identify you.</em></h1>
+        <p class="hero-copy">Upload an image, detect visible faces, and create a privacy-protected copy with clear quality metrics. Your original is never used as the download.</p>
+      </section>
+
+      <section class="workspace" aria-label="Image protection workspace">
+        <div class="upload-panel" id="dropzone">
+          <div class="upload-art" aria-hidden="true"><span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span><div class="scan-line"></div><span class="face-icon">◌</span></div>
+          <h2>Drop an image here</h2>
+          <p>JPEG, PNG or WebP · up to 10 MB</p>
+          <label class="button button-primary" for="file-input">Choose image</label>
+          <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+          <p class="privacy-note"><span>⌁</span> Processed on your instance · temporary files expire automatically</p>
+        </div>
+
+        <div class="preview-panel hidden" id="preview-panel">
+          <div class="panel-heading"><div><span class="eyebrow">READY TO PROCESS</span><h2 id="file-name">image.jpg</h2></div><button class="icon-button" id="clear-button" aria-label="Remove image">×</button></div>
+          <div class="preview-frame"><img id="preview-image" alt="Selected image preview" /><div class="face-badge" id="face-badge">Original</div></div>
+          <div class="preview-footer"><span id="file-size"></span><button class="button button-primary" id="process-button">Protect image <span>→</span></button></div>
+        </div>
+
+        <div class="processing-panel hidden" id="processing-panel">
+          <div class="loader-orbit"><div></div></div>
+          <span class="eyebrow">ANALYZING IMAGE</span><h2 id="processing-title">Finding visible faces</h2>
+          <p id="processing-copy">The lightweight CPU pipeline is working. This usually takes a moment.</p>
+          <div class="progress-track"><div id="progress-bar"></div></div>
+        </div>
+
+        <div class="result-panel hidden" id="result-panel">
+          <div class="panel-heading"><div><span class="eyebrow success">PROTECTION COMPLETE</span><h2>Ready to download</h2></div><button class="icon-button" id="new-button" aria-label="Start new image">↻</button></div>
+          <div class="comparison"><div><span>Protected output</span><div class="result-frame"><img id="result-image" alt="Protected image preview" /></div></div><div class="result-summary"><div class="summary-check">✓</div><h3>Your protected copy is ready.</h3><p id="result-limitation">Protection is not guaranteed against every detector or recognition system.</p><button class="button button-primary full" id="download-button">Download protected image <span>↓</span></button></div></div>
+          <div class="metrics" id="metrics"></div>
+        </div>
+      </section>
+
+      <section class="how-it-works"><div class="section-label">HOW VEIL WORKS</div><div class="steps"><div class="step"><span>01</span><h3>Detect</h3><p>OpenCV locates likely faces without uploading anything to a third-party AI service.</p></div><div class="step"><span>02</span><h3>Protect</h3><p>Detected regions are pixelated by a lightweight CPU backend built for everyday hardware.</p></div><div class="step"><span>03</span><h3>Inspect</h3><p>Review quality and coverage metrics before downloading your protected copy.</p></div></div></section>
+    </main>
+
+    <footer><span>VEIL / PRIVACY MEDIA LAB</span><span>Open-source prototype · CPU-first by design</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
